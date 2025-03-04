@@ -2,6 +2,7 @@
 import csv
 import boto3
 import yaml
+import codecs
 
 # settings.yml を読み込む
 with open('settings.yml', 'r') as file:
@@ -123,7 +124,7 @@ def main():
     csv_file = 'users.csv'  # CSVファイルのパス。必要に応じて変更してください。
 
     try:
-        with open(csv_file, newline='', encoding='utf-8') as csvfile:
+        with codecs.open(csv_file, 'r', 'utf-8-sig') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 # ユーザーが存在する場合はスキップ
