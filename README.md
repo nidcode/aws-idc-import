@@ -10,7 +10,8 @@
 - `main.py`: メインのスクリプトファイル。ユーザーとグループの作成、ユーザーのグループへの追加を行います。
 - `users.csv`: ユーザー情報を含むCSVファイル。ユーザー名、氏名、メールアドレス、グループ情報が含まれます。
 
-## 事前準備 AWS SSO 設定手順
+## 事前準備
+### AWS SSO 設定手順
 
 1. AWS CLIをインストールしていない場合は、インストールします：
 
@@ -26,6 +27,10 @@
 
 3. プロンプトに従って、SSOの設定を完了します。 
 
+### API で作成されたユーザーにワンタイムパスワードを E メールで送信するように設定
+こちらを参照  
+https://docs.aws.amazon.com/ja_jp/singlesignon/latest/userguide/userswithoutpwd.html  
+
 ## 使い方
 
 1. `settings.yml`ファイルを作成し、以下の内容を設定します：
@@ -38,8 +43,8 @@
 2. `users.csv`ファイルを作成し、以下の形式でユーザー情報を入力します：
 
     ```csv
-    username,first_name,last_name,email,groups
-    johndoe,John,Doe,johndoe@example.com,group1;group2
+    username,first_name,last_name,display_name,email,groups
+    johndoe,John,Doe,John Doe,johndoe@example.com,group1;group2
     ```
 
 3. `requirements.txt`ファイルに記載されたパッケージをインストールします：
@@ -59,6 +64,7 @@
 - `settings.yml`ファイルには、適切なIdentity Store IDおよびSSOプロファイル名を設定してください。
 - `users.csv`ファイルには、ユーザー情報を正確に入力してください。
 - AWS CLIが設定されている必要があります。
+- ユーザー作成後に自動的にメールは送信されません。初回ログイン時にパスワード設定用のメールが送信されます。
 
 ## ライセンス
 
